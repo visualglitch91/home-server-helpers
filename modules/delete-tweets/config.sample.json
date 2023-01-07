@@ -1,0 +1,9 @@
+{
+  "username": {
+    "apiVersion": "v1/v2",
+    "consumerKey": "consumerKey",
+    "consumerSecret": "consumerSecret",
+    "accessToken": "accessToken",
+    "accessTokenSecret": "accessTokenSecret"
+  }
+}

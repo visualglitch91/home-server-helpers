@@ -1,0 +1,15 @@
+{
+  "interval": 3000,
+  "tuyaAPI": {
+    "baseUrl": "https://openapi.tuyaus.com",
+    "accessKey": "tuyaAPI accessKey",
+    "secretKey": "tuyaAPI secretKey5"
+  },
+  "devices": [
+    {
+      "id": "device id",
+      "name": "friendly name",
+      "alarmWebhook": "http://webhook"
+    }
+  ]
+}

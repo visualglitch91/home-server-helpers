@@ -1,0 +1,25 @@
+{
+  "name": "home-control-server",
+  "scripts": {
+    "start": "vite-node index.ts"
+  },
+  "dependencies": {
+    "@fastify/static": "^6.6.0",
+    "@tuya/tuya-connector-nodejs": "^2.1.2",
+    "correios-brasil": "^3.0.3",
+    "date-fns": "^2.29.3",
+    "fastify": "^4.11.0",
+    "got": "^12.5.3",
+    "lodash": "^4.17.21",
+    "p-queue": "^7.3.0",
+    "twitter-api-v2": "^1.12.5",
+    "vite-node": "^0.26.3",
+    "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/date-fns": "^2.6.0",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.18",
+    "@types/ws": "^8.5.4"
+  }
+}
