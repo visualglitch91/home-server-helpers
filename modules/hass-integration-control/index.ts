@@ -61,7 +61,7 @@ export default async function packageTracker(server: Server) {
 
         for (let id of ids) {
           await got
-            .post(`http://${host}/api/config/config_entries/entry/${id}/reload`)
+            .post(`http://${host}/api/config/config_entries/entry/${id}/reload`, { headers: {Authorization: `Bearer ${token}`}})
             .json();
         }
       });

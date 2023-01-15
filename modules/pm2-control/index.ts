@@ -12,7 +12,7 @@ function pm2(method: string, name: string) {
   });
 }
 
-export default async function fireTVControl(server: Server) {
+export default async function pm2Control(server: Server) {
   await server.register(
     async (instance) => {
       instance.get<{ Params: { name: string } }>(

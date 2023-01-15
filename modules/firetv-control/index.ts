@@ -29,38 +29,32 @@ function adbShell(...cmds: string[]) {
 export default async function fireTVControl(server: Server) {
   await server.register(
     async (instance) => {
-      instance.get<{ Params: { activity: string } }>(
-        "/launch/:activity",
-        async (req) => {
-          const { activity } = req.params;
+      instance.post<{ Body: { activity: string } }>("/launch", async (req) => {
+        const { activity } = req.body;
 
-          logger.log("launch:", activity);
+        logger.log("launch:", activity);
 
-          await adbShell("input keyevent KEYCODE_HOME", `am start ${activity}`);
-        }
-      );
+        await adbShell("input keyevent KEYCODE_HOME", `am start ${activity}`);
+      });
 
-      instance.get<{ Params: { keycode: string } }>(
-        "/keycode/:keycode",
-        async (req) => {
-          const { keycode } = req.params;
+      instance.post<{ Body: { keycode: string } }>("/keycode", async (req) => {
+        const { keycode } = req.body;
 
-          logger.log("keycode:", keycode);
+        logger.log("keycode:", keycode);
 
-          await adbShell(`input keyevent ${keycode}`);
-        }
-      );
+        await adbShell(`input keyevent ${keycode}`);
+      });
 
-      instance.get<{ Params: { button: string } }>(
-        "/button/:button",
-        async (req) => {
-          const { button } = req.params;
+      instance.post<{ Body: { button: string } }>("/button", async (req) => {
+        const { button } = req.body;
 
-          logger.log("button:", button);
+        logger.log("button:", button);
 
-          await got.get(`http://${restKeyboardHost}/${button}`);
-        }
-      );
+        await Promise.all(
+          adbShell("input keyevent REFRESH"),
+          got.get(`http://${restKeyboardHost}/${button}`)
+        );
+      });
     },
     { prefix: "/firetv-control" }
   );
