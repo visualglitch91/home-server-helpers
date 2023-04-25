@@ -9,7 +9,10 @@ export default async function reboot(server: Server) {
   await server.get("/reboot", async () => {
     return new Promise<void>((resolve) => {
       logger.log("rebooting...");
-      exec(cmd, () => resolve());
+      exec(cmd, (...args) => {
+        logger.log(...args);
+        resolve();
+      });
     });
   });
 

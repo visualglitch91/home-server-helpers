@@ -3,7 +3,7 @@ import { Server } from "../../server";
 import { Logger } from "../../helpers";
 import { bin } from "./config.json";
 
-const logger = new Logger("hyerphdr-control");
+const logger = new Logger("pm2-control");
 
 function pm2(method: string, name: string) {
   return new Promise<void>((resolve) => {

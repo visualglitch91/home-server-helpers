@@ -1,0 +1,4 @@
+{
+  "bin": "/usr/bin/transmission-remote",
+  "auth": "-n 'user:pass'"
+}

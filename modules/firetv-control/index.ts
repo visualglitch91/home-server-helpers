@@ -37,6 +37,11 @@ export default async function fireTVControl(server: Server) {
         await adbShell("input keyevent KEYCODE_HOME", `am start ${activity}`);
       });
 
+      instance.post("/reboot", async () => {
+        logger.log("reboot");
+        await adbShell("reboot userspace");
+      });
+
       instance.post<{ Body: { keycode: string } }>("/keycode", async (req) => {
         const { keycode } = req.body;
 
@@ -50,10 +55,10 @@ export default async function fireTVControl(server: Server) {
 
         logger.log("button:", button);
 
-        await Promise.all(
+        await Promise.all([
           adbShell("input keyevent REFRESH"),
-          got.get(`http://${restKeyboardHost}/${button}`)
-        );
+          got.get(`http://${restKeyboardHost}/${button}`),
+        ]);
       });
     },
     { prefix: "/firetv-control" }
