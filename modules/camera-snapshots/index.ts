@@ -13,6 +13,7 @@ function captureSnapshot(name: string, source: string) {
   const finalFile = `${snapshotDir}/${name}.jpg`;
 
   const command = `
+    rm -rf ${tmpFile} &&
     /usr/bin/ffmpeg -i ${source} -ss 00:00:01 -f image2 -vframes 1 ${tmpFile} &&
     rm -rf ${finalFile} &&
     mv ${tmpFile} ${finalFile}
