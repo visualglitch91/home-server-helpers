@@ -60,6 +60,10 @@ export default async function fireTVControl(server: Server) {
           got.get(`http://${restKeyboardHost}/${button}`),
         ]);
       });
+
+      instance.post("/max-volume", () =>
+        adbShell("cmd media_session volume --set 15")
+      );
     },
     { prefix: "/firetv-control" }
   );
